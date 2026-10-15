@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BTS ARMY Neón World | @creativeymvs</title>
+  <!-- FontAwesome & html2canvas -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <style>
+    :root {
+      --bg-color: #0a0a0f;
+      --card-bg: rgba(20, 15, 35, 0.85);
+      --neon-purple: #a855f7;
+      --neon-pink: #ec4899;
+      --neon-blue: #06b6d4;
+      --text-color: #f3f4f6;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      padding-bottom: 50px;
+      background-image: radial-gradient(circle at 50% 10%, rgba(168, 85, 247, 0.15), transparent 40%),
+                        radial-gradient(circle at 80% 60%, rgba(236, 72, 153, 0.12), transparent 40%);
+    }
+
+    /* Contenedor principal */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 15px;
+    }
+
+    /* Encabezado Neón */
+    header {
+      text-align: center;
+      padding: 25px 10px;
+      border-bottom: 2px solid var(--neon-purple);
+      box-shadow: 0 0 15px rgba(168, 85, 247, 0.4);
+      margin-bottom: 20px;
+      border-radius: 0 0 20px 20px;
+      background: rgba(10, 10, 15, 0.9);
+    }
+
+    h1 {
+      font-size: 2rem;
+      color: #fff;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px var(--neon-purple), 0 0 20px var(--neon-pink);
+      letter-spacing: 2px;
+    }
+
+    .subtitle {
+      color: var(--neon-blue);
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    /* Tarjetas y Secciones */
+    .section-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(168, 85, 247, 0.3);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(168, 85, 247, 0.1);
+      backdrop-filter: blur(5px);
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      color: #fff;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-shadow: 0 0 5px var(--neon-pink);
+    }
+
+    .section-title i {
+      color: var(--neon-pink);
+    }
+
+    /* Botones Neón */
+    .btn-neon {
+      display: inline-block;
+      width: 100%;
+      padding: 12px;
+      border: 2px solid var(--neon-purple);
+      border-radius: 12px;
+      background: transparent;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: bold;
+      text-align: center;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-shadow: 0 0 5px var(--neon-purple);
+      box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+    }
+
+    .btn-neon:hover {
+      background: var(--neon-purple);
+      box-shadow: 0 0 20px var(--neon-purple);
+      color: #000;
+    }
+
+    .btn-pink {
+      border-color: var(--neon-pink);
+      text-shadow: 0 0 5px var(--neon-pink);
+    }
+
+    .btn-pink:hover {
+      background: var(--neon-pink);
+      box-shadow: 0 0 20px var(--neon-pink);
+      color: #000;
+    }
+
+    /* Radio BTS */
+    .radio-player {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+    }
+
+    audio {
+      width: 100%;
+      border-radius: 10px;
+      filter: invert(0.9) hue-rotate(240deg);
+    }
+
+    /* Calculadora de Compatibilidad */
+    .compat-form label {
+      display: block;
+      margin: 10px 0 5px;
+      font-size: 0.9rem;
+    }
+
+    .compat-form input, .compat-form select {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid var(--neon-blue);
+      background: #121124;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    #card-result {
+      display: none;
+      background: linear-gradient(135deg, #180a29, #2b0c3d);
+      border: 2px solid var(--neon-pink);
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      margin-top: 15px;
+      box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
+    }
+
+    .member-img-box {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin: 10px auto;
+      border: 3px solid var(--neon-purple);
+      box-shadow: 0 0 15px var(--neon-purple);
+      object-fit: cover;
+    }
+
+    /* Tienda & Afiliados */
+    .store-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 15px;
+    }
+
+    .product-card {
+      background: #151228;
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-bottom: 8px;
+    }
+
+    .product-title {
+      font-size: 0.85rem;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .product-badge {
+      font-size: 0.75rem;
+      color: var(--neon-pink);
+      margin-bottom: 8px;
+    }
+
+    /* Muro de Comentarios */
+    .comments-box {
+      max-height: 200px;
+      overflow-y: auto;
+      background: #0f0d1d;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .comment-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 0;
+      font-size: 0.85rem;
+    }
+
+    .comment-author {
+      color: var(--neon-blue);
+      font-weight: bold;
+    }
+
+    /* Banner Telegram VIP */
+    .telegram-banner {
+      text-align: center;
+      background: linear-gradient(90deg, #0088cc, var(--neon-purple));
+      padding: 18px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 136, 204, 0.6);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- Encabezado -->
+    <header>
+      <h1>BTS ARMY NEÓN</h1>
+      <p class="subtitle">Comunidad & Portal Interactivo VIP</p>
+    </header>
+
+    <!-- Radio BTS -->
+    <div class="section-card">
+      <h2 class="section-title"><i class="fa-solid fa-radio"></i> Radio BTS 24/7</h2>
+      <div class="radio-player">
+        <p style="font-size: 0.85rem; color: #ccc;">Escucha lo mejor de BTS mientras navegas:</p>
+        <audio controls autoplay loop>
+          <source src="https://stream.zeno.fm/f3wvbbqmdg8uv" type="audio/mpeg">
+          Tu navegador no soporta el reproductor.
+        </audio>
+      </div>
+    </div>
+
+    <!-- Test de Compatibilidad con Bias -->
+    <div class="section-card">
+      <h2 class="section-title"><i class="fa-solid fa-heart"></i> Test de Compatibilidad Neón</h2>
+      <div class="compat-form">
+        <label>Tu Nombre / User:</label>
+        <input type="text" id="user-name" placeholder="Ej: Sofia ARMY">
+        
+        <label>Elige a tu Bias Favorito:</label>
+        <select id="bias-select">
+          <option value="RM">RM (Namjoon)</option>
+          <option value="Jin">Jin (Seokjin)</option>
+          <option value="Suga">Suga (Yoongi)</option>
+          <option value="J-Hope">J-Hope (Hoseok)</option>
+          <option value="Jimin">Jimin</option>
+          <option value="V">V (Taehyung)</option>
+          <option value="Jungkook">Jungkook</option>
+        </select>
+
+        <button class="btn-neon btn-pink" onclick="calcularCompatibilidad()">¡Calcular Compatibilidad!</button>
+      </div>
+
+      <!-- Tarjeta Resultante -->
+      <div id="card-result">
+        <div id="card-to-download" style="padding: 15px;">
+          <h3 style="color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink);">CARNÉ DE COMPATIBILIDAD</h3>
+          <img id="bias-img" class="member-img-box" src="" alt="Bias">
+          <h4 id="res-names" style="color: #fff; margin-top: 5px;"></h4>
+          <p id="res-percent" style="font-size: 1.8rem; font-weight: bold; color: var(--neon-blue); margin: 10px 0;"></p>
+          <p style="font-size: 0.75rem; color: #aaa;">Certificado Oficial ARMY | @creativeymvs</p>
+        </div>
+        <button class="btn-neon" style="margin-top: 15px;" onclick="descargarTarjeta()"><i class="fa-solid fa-download"></i> Descargar Tarjeta Foto</button>
+      </div>
+    </div>
+
+    <!-- Tienda & Enlaces Afiliados (Amazon, SheIn, AliExpress) -->
+    <div class="section-card">
+      <h2 class="section-title"><i class="fa-solid fa-bag-shopping"></i> Tienda ARMY & Recomendados</h2>
+      <div class="store-grid">
+        
+        <!-- Producto 1: Amazon Afiliado -->
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300" alt="Lightstick">
+          <div class="product-title">ARMY Bomb Lightstick</div>
+          <div class="product-badge">Amazon Afiliado</div>
+          <a href="TU_ENLACE_AMAZON_AQUI" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Ver Oferta</a>
+        </div>
+
+        <!-- Producto 2: SheIn Afiliado -->
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=300" alt="Ropa BTS">
+          <div class="product-title">Hoodie BTS Estilo Neón</div>
+          <div class="product-badge">SheIn Afiliado</div>
+          <a href="TU_ENLACE_SHEIN_AQUI" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Ver en SheIn</a>
+        </div>
+
+        <!-- Producto 3: AliExpress Afiliado -->
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300" alt="Accesorios">
+          <div class="product-title">Set Tarjetas + Llaveros</div>
+          <div class="product-badge">AliExpress</div>
+          <a href="TU_ENLACE_ALIEXPRESS_AQUI" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Comprar Ahora</a>
+        </div>
+
+        <!-- Producto 4: Tu Guía Digital / Libro -->
+        <div class="product-card">
+          <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300" alt="Guía Digital">
+          <div class="product-title">Guía & Afiche Digital</div>
+          <div class="product-badge">Exclusivo VIP</div>
+          <a href="https://t.me/creativeymvs" target="_blank" class="btn-neon btn-pink" style="font-size: 0.75rem; padding: 6px;">Solicitar en Telegram</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Muro de Comentarios -->
+    <div class="section-card">
+      <h2 class="section-title"><i class="fa-solid fa-comments"></i> Muro ARMY en Vivo</h2>
+      <div class="comments-box" id="comments-container">
+        <div class="comment-item"><span class="comment-author">Admin:</span> ¡Bienvenidos al portal Neón ARMY! Dejen sus saludos aquí.</div>
+      </div>
+      <input type="text" id="comment-input" placeholder="Escribe tu mensaje ARMY..." style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--neon-purple); background: #121124; color: #fff; margin-bottom: 8px;">
+      <button class="btn-neon" onclick="agregarComentario()">Publicar Mensaje</button>
+    </div>
+
+    <!-- Banner Canal Telegram VIP -->
+    <div class="telegram-banner">
+      <h3 style="color: #fff; margin-bottom: 5px;"><i class="fa-brands fa-telegram"></i> ¿Quieres más contenido BTS?</h3>
+      <p style="font-size: 0.85rem; color: #e0f2fe; margin-bottom: 12px;">Únete a nuestro canal VIP exclusivo con sorteos, fotos HD y guías.</p>
+      <a href="https://t.me/creativeymvs" target="_blank" class="btn-neon btn-pink" style="background: #fff; color: #000; text-shadow: none;">UNIRME A @creativeymvs</a>
+    </div>
+
+  </div>
+
+  <script>
+    // Imágenes ilustrativas de los miembros
+    const biasData = {
+      "RM": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300",
+      "Jin": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300",
+      "Suga": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300",
+      "J-Hope": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=300",
+      "Jimin": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=300",
+      "V": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=300",
+      "Jungkook": "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=300"
+    };
+
+    function calcularCompatibilidad() {
+      const name = document.getElementById('user-name').value.trim();
+      const bias = document.getElementById('bias-select').value;
+
+      if (!name) {
+        alert('Por favor ingresa tu nombre o usuario.');
+        return;
+      }
+
+      // Generar un porcentaje pseudo-aleatorio divertido
+      const percent = Math.floor(Math.random() * 21) + 80; // Entre 80% y 100%
+
+      document.getElementById('bias-img').src = biasData[bias];
+      document.getElementById('res-names').innerText = `${name}  ${bias}`;
+      document.getElementById('res-percent').innerText = `${percent}% COMPATIBLE`;
+      
+      document.getElementById('card-result').style.display = 'block';
+    }
+
+    function descargarTarjeta() {
+      const card = document.getElementById('card-to-download');
+      html2canvas(card, { backgroundColor: '#180a29' }).then(canvas => {
+        const link = document.createElement('a');
+        link.download = 'BTS-Compatibilidad.png';
+        link.href = canvas.toDataURL();
+        link.click();
+      });
+    }
+
+    function agregarComentario() {
+      const input = document.getElementById('comment-input');
+      const text = input.value.trim();
+      if (text !== "") {
+        const container = document.getElementById('comments-container');
+        const item = document.createElement('div');
+        item.className = 'comment-item';
+        item.innerHTML = `<span class="comment-author">ARMY:</span> ${text}`;
+        container.appendChild(item);
+        input.value = "";
+        container.scrollTop = container.scrollHeight;
+      }
+    }
+  </script>
+
+</body>
+</html>
