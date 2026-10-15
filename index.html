@@ -15,14 +15,24 @@
       --neon-pink: #ec4899;
       --neon-blue: #06b6d4;
       --neon-green: #22c55e;
+      --neon-gold: #eab308;
       --text-color: #f3f4f6;
     }
 
+    /* Protecciones visuales anti-copia */
     * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      box-sizing: border-box; margin: 0; padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; /* Inhabilita seleccionar texto */
+    }
+
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: none; /* Inhabilita arrastrar imágenes */
     }
 
     body {
@@ -34,11 +44,12 @@
                         radial-gradient(circle at 80% 60%, rgba(236, 72, 153, 0.12), transparent 40%);
     }
 
-    .container {
-      max-width: 850px;
-      margin: 0 auto;
-      padding: 15px;
-    }
+    /* Temas VIP */
+    body.theme-degradado { background: linear-gradient(135deg, #2a0845, #6441a5, #ff007f) !important; }
+    body.theme-bts { background: radial-gradient(circle, #3b0764, #1e1b4b, #000000) !important; }
+    body.theme-galaxia { background: linear-gradient(to right, #0f0c29, #302b63, #24243e) !important; }
+
+    .container { max-width: 850px; margin: 0 auto; padding: 15px; }
 
     header {
       text-align: center;
@@ -51,461 +62,611 @@
     }
 
     h1 {
-      font-size: 2rem;
-      color: #fff;
-      text-transform: uppercase;
-      text-shadow: 0 0 8px var(--neon-purple), 0 0 20px var(--neon-pink);
-      letter-spacing: 2px;
+      font-size: 2rem; color: #fff; text-transform: uppercase;
+      text-shadow: 0 0 8px var(--neon-purple), 0 0 20px var(--neon-pink); letter-spacing: 2px;
     }
 
-    .subtitle {
-      color: var(--neon-blue);
-      font-size: 0.95rem;
-      font-weight: 600;
-    }
+    .subtitle { color: var(--neon-blue); font-size: 0.95rem; font-weight: 600; }
+
+    .nav-buttons { display: flex; gap: 10px; justify-content: center; margin-top: 15px; }
 
     .section-card {
       background: var(--card-bg);
       border: 1px solid rgba(168, 85, 247, 0.3);
-      border-radius: 16px;
-      padding: 20px;
-      margin-bottom: 25px;
+      border-radius: 16px; padding: 20px; margin-bottom: 25px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5), inset 0 0 10px rgba(168, 85, 247, 0.1);
       backdrop-filter: blur(5px);
     }
 
     .section-title {
-      font-size: 1.3rem;
-      color: #fff;
-      margin-bottom: 15px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      font-size: 1.3rem; color: #fff; margin-bottom: 15px; display: flex; align-items: center; gap: 10px;
       text-shadow: 0 0 5px var(--neon-pink);
     }
-
-    .section-title i {
-      color: var(--neon-pink);
-    }
+    .section-title i { color: var(--neon-pink); }
 
     .btn-neon {
-      display: inline-block;
-      width: 100%;
-      padding: 12px;
-      border: 2px solid var(--neon-purple);
-      border-radius: 12px;
-      background: transparent;
-      color: #fff;
-      font-size: 0.95rem;
-      font-weight: bold;
-      text-align: center;
-      text-decoration: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      text-shadow: 0 0 5px var(--neon-purple);
-      box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+      display: inline-block; width: 100%; padding: 12px; border: 2px solid var(--neon-purple);
+      border-radius: 12px; background: transparent; color: #fff; font-size: 0.95rem; font-weight: bold;
+      text-align: center; text-decoration: none; cursor: pointer; transition: all 0.3s ease;
+      text-shadow: 0 0 5px var(--neon-purple); box-shadow: 0 0 10px rgba(168, 85, 247, 0.2);
+    }
+    .btn-neon:hover { background: var(--neon-purple); box-shadow: 0 0 20px var(--neon-purple); color: #000; }
+    .btn-pink { border-color: var(--neon-pink); text-shadow: 0 0 5px var(--neon-pink); }
+    .btn-pink:hover { background: var(--neon-pink); box-shadow: 0 0 20px var(--neon-pink); color: #000; }
+    .btn-green { border-color: var(--neon-green); text-shadow: 0 0 5px var(--neon-green); }
+    .btn-green:hover { background: var(--neon-green); box-shadow: 0 0 20px var(--neon-green); color: #000; }
+    .btn-gold { border-color: var(--neon-gold); text-shadow: 0 0 5px var(--neon-gold); color: var(--neon-gold); }
+    .btn-gold:hover { background: var(--neon-gold); box-shadow: 0 0 20px var(--neon-gold); color: #000; }
+
+    .search-input {
+      width: 100%; padding: 12px; border-radius: 10px; border: 1px solid var(--neon-blue);
+      background: #121124; color: #fff; margin-bottom: 10px;
     }
 
-    .btn-neon:hover {
-      background: var(--neon-purple);
-      box-shadow: 0 0 20px var(--neon-purple);
-      color: #000;
-    }
-
-    .btn-pink {
-      border-color: var(--neon-pink);
-      text-shadow: 0 0 5px var(--neon-pink);
-    }
-
-    .btn-pink:hover {
-      background: var(--neon-pink);
-      box-shadow: 0 0 20px var(--neon-pink);
-      color: #000;
-    }
-
-    /* Radio BTS */
-    .radio-player {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      align-items: center;
-    }
-
-    audio {
-      width: 100%;
-      border-radius: 10px;
-      filter: invert(0.9) hue-rotate(240deg);
-    }
-
-    /* Calculadora de Compatibilidad */
-    .compat-form label {
-      display: block;
-      margin: 10px 0 5px;
-      font-size: 0.9rem;
-    }
-
-    .compat-form input, .compat-form select {
-      width: 100%;
-      padding: 10px;
-      border-radius: 8px;
-      border: 1px solid var(--neon-blue);
-      background: #121124;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-
-    #card-result {
-      display: none;
-      background: linear-gradient(135deg, #180a29, #2b0c3d);
-      border: 2px solid var(--neon-pink);
-      border-radius: 15px;
-      padding: 20px;
-      text-align: center;
-      margin-top: 15px;
-      box-shadow: 0 0 20px rgba(236, 72, 153, 0.4);
-    }
-
-    .member-img-box {
-      width: 130px;
-      height: 130px;
-      border-radius: 50%;
-      margin: 10px auto;
-      border: 3px solid var(--neon-purple);
-      box-shadow: 0 0 15px var(--neon-purple);
-      object-fit: cover;
-    }
-
-    /* Trivia Ardiente BTS */
-    .trivia-box {
-      background: #120f26;
-      padding: 15px;
-      border-radius: 12px;
-      border: 1px solid var(--neon-pink);
-    }
-
-    .trivia-opt {
-      display: block;
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      background: #1c1836;
-      color: #fff;
-      border: 1px solid var(--neon-purple);
-      border-radius: 8px;
-      text-align: left;
-      cursor: pointer;
-    }
-
-    .trivia-opt:hover {
-      background: var(--neon-purple);
-      color: #000;
-    }
-
-    /* Galería de Fotos */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-    }
-
-    .gallery-card {
-      background: #151228;
-      border-radius: 10px;
-      overflow: hidden;
-      border: 1px solid rgba(236, 72, 153, 0.3);
-      text-align: center;
-      padding-bottom: 10px;
-    }
-
-    .gallery-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-    }
-
-    /* Tienda & Afiliados */
-    .store-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 15px;
-    }
-
-    .product-card {
-      background: #151228;
-      border: 1px solid rgba(6, 182, 212, 0.4);
-      border-radius: 12px;
-      padding: 12px;
-      text-align: center;
-    }
-
-    .product-card img {
-      width: 100%;
-      height: 110px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 8px;
-    }
-
-    .product-title {
-      font-size: 0.85rem;
-      font-weight: bold;
-      margin-bottom: 4px;
-    }
-
-    .product-badge {
-      font-size: 0.75rem;
-      font-weight: bold;
-      padding: 2px 6px;
+    /* Noticias Flash */
+    .news-item {
+      background: rgba(18, 17, 36, 0.9);
+      border-left: 3px solid var(--neon-pink);
+      padding: 10px 12px;
+      margin-bottom: 10px;
       border-radius: 6px;
-      margin-bottom: 8px;
-      display: inline-block;
+    }
+    .news-date { font-size: 0.7rem; color: var(--neon-blue); font-weight: bold; }
+    .news-title { font-size: 0.85rem; color: #fff; margin-top: 2px; }
+
+    /* Carrusel Top VIP */
+    .vip-carousel { display: flex; gap: 15px; overflow-x: auto; padding: 10px 0; scroll-behavior: smooth; }
+
+    .vip-card {
+      min-width: 220px; background: linear-gradient(135deg, #1c1033, #2e0947);
+      border: 2px solid var(--neon-pink); border-radius: 14px; padding: 15px; text-align: center;
+      cursor: pointer; box-shadow: 0 0 12px rgba(236, 72, 153, 0.4); transition: transform 0.3s ease;
+    }
+    .vip-card.creator-card {
+      border: 2px solid var(--neon-gold) !important;
+      background: linear-gradient(135deg, #2e1d09, #4a2e00) !important;
+      box-shadow: 0 0 18px rgba(234, 179, 8, 0.6) !important;
+    }
+    .vip-card:hover { transform: scale(1.03); }
+
+    .vip-avatar { width: 80px; height: 80px; border-radius: 50%; border: 2px solid var(--neon-purple); object-fit: cover; margin: 0 auto 10px; }
+    .vip-watermark { font-size: 0.65rem; color: #888; margin-top: 8px; }
+
+    /* Formulario Perfil */
+    .profile-form label { display: block; margin: 10px 0 4px; font-size: 0.85rem; color: var(--neon-blue); }
+    .profile-form input, .profile-form select, .profile-form textarea {
+      width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--neon-purple);
+      background: #121124; color: #fff; margin-bottom: 8px;
+      -webkit-user-select: text; user-select: text; /* Permite escribir en inputs */
     }
 
+    .user-gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 10px 0; }
+    .user-gallery-grid img { width: 100%; height: 90px; object-fit: cover; border-radius: 8px; border: 1px solid var(--neon-pink); }
+
+    audio { width: 100%; border-radius: 10px; filter: invert(0.9) hue-rotate(240deg); }
+
+    .member-img-box { width: 130px; height: 130px; border-radius: 50%; margin: 10px auto; border: 3px solid var(--neon-purple); box-shadow: 0 0 15px var(--neon-purple); object-fit: cover; }
+
+    .trivia-opt { display: block; width: 100%; padding: 10px; margin: 8px 0; background: #1c1836; color: #fff; border: 1px solid var(--neon-purple); border-radius: 8px; text-align: left; cursor: pointer; }
+
+    .gallery-grid, .store-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+    .gallery-card, .product-card { background: #151228; border-radius: 10px; overflow: hidden; border: 1px solid rgba(236, 72, 153, 0.3); text-align: center; padding: 10px; }
+    .gallery-card img, .product-card img { width: 100%; height: 140px; object-fit: cover; border-radius: 8px; }
+
+    .product-badge { font-size: 0.75rem; font-weight: bold; padding: 2px 6px; border-radius: 6px; margin: 5px 0; display: inline-block; }
     .badge-amazon { background: #ff9900; color: #000; }
     .badge-ali { background: #ff4747; color: #fff; }
     .badge-shein { background: #000; color: #fff; border: 1px solid #fff; }
     .badge-tiktok { background: #fe2c55; color: #fff; }
-    .badge-digital { background: var(--neon-purple); color: #fff; }
 
-    /* Muro de Comentarios */
-    .comments-box {
-      max-height: 250px;
-      overflow-y: auto;
-      background: #0f0d1d;
-      padding: 10px;
-      border-radius: 8px;
-      margin-bottom: 12px;
+    /* Modal Pago */
+    .modal-overlay {
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85); z-index: 1000; justify-content: center; align-items: center; padding: 15px;
+    }
+    .modal-content {
+      background: #180e29; border: 2px solid var(--neon-pink); border-radius: 16px; padding: 20px;
+      max-width: 450px; width: 100%; box-shadow: 0 0 25px rgba(236, 72, 153, 0.6); max-height: 90vh; overflow-y: auto;
     }
 
-    .comment-item {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 8px 0;
-      font-size: 0.85rem;
-    }
-
-    .comment-author {
-      color: var(--neon-blue);
-      font-weight: bold;
-    }
-
-    .comment-img {
-      max-width: 100%;
-      max-height: 150px;
-      border-radius: 8px;
-      margin-top: 5px;
-      border: 1px solid var(--neon-purple);
-    }
-
-    /* Banner Telegram */
-    .telegram-banner {
-      text-align: center;
-      background: linear-gradient(90deg, #0088cc, var(--neon-purple));
-      padding: 18px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0, 136, 204, 0.6);
-    }
+    .chat-box { max-height: 200px; overflow-y: auto; background: #0d0b1a; padding: 10px; border-radius: 8px; margin-bottom: 10px; }
+    .chat-msg { border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding: 6px 0; font-size: 0.85rem; }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false;" onselectstart="return false;" ondragstart="return false;">
 
   <div class="container">
 
-    <!-- Encabezado -->
     <header>
       <h1>BTS ARMY NEÓN</h1>
-      <p class="subtitle">Portal Interactivo VIP & Comunidad</p>
+      <p class="subtitle">Portal Interactivo VIP & Red Social</p>
+      <div class="nav-buttons">
+        <button class="btn-neon btn-pink" onclick="mostrarSeccion('main-view')"><i class="fa-solid fa-house"></i> Inicio</button>
+        <button class="btn-neon" onclick="mostrarSeccion('profile-view')"><i class="fa-solid fa-user"></i> Mi Perfil</button>
+      </div>
     </header>
 
-    <!-- Radio BTS -->
-    <div class="section-card">
-      <h2 class="section-title"><i class="fa-solid fa-radio"></i> Radio Oficial BTS 24/7</h2>
-      <div class="radio-player">
-        <p style="font-size: 0.85rem; color: #ccc;">Escucha la música en vivo de BTS de fondo:</p>
+    <!-- VISTA PRINCIPAL -->
+    <div id="main-view">
+
+      <!-- Noticias BTS Flash -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-newspaper"></i> BTS News Flash ⚡</h2>
+        
+        <div class="news-item">
+          <div class="news-date">📅 HOY | 🇰🇷 Seúl</div>
+          <div class="news-title">💜 Suga y Jin sorprenden a ARMY con transmisión especial previo al regreso completo de BTS.</div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">📅 HACE 2 HORAS | 🇺🇸 Billboard</div>
+          <div class="news-title">🔥 "Seven" de Jungkook rompe nuevo récord histórico de reproducciones globales.</div>
+        </div>
+
+        <div class="news-item">
+          <div class="news-date">📅 AYER | 🎵 K-Pop News</div>
+          <div class="news-title">✨ Taehyung (V) comparte nuevas fotografías de proyecto secreto con marca de lujo.</div>
+        </div>
+      </div>
+
+      <!-- Buscador -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-magnifying-glass"></i> Buscador de ARMYs Mundial</h2>
+        <input type="text" class="search-input" id="search-user" placeholder="Buscar por Nombre, Apellido o País..." onkeyup="buscarUsuario()">
+        <div id="search-results"></div>
+      </div>
+
+      <!-- Carrusel Top VIP con PERFIL CREADOR -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-crown"></i> Generador Top VIP Portada</h2>
+        <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 10px;">Toca cualquier tarjeta VIP para ver el perfil completo:</p>
+        
+        <div class="vip-carousel" id="vip-carousel">
+          <!-- PERFIL OFICIAL CREADOR / ADMIN -->
+          <div class="vip-card creator-card" onclick="verPerfilModal('Creative Ymvs', 'Admin', 'Venezuela 🇻🇪', 'Creador Oficial', '@creativeymvs', 'BTS ARMY', 'All Songs', 'https://via.placeholder.com/150/eab308/000000?text=CREADOR', '¡Bienvenidas al Portal Oficial BTS ARMY Neón! 👑✨')">
+            <span style="background: var(--neon-gold); color: #000; font-weight: bold; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;">👑 CREADOR & ADMIN</span>
+            <img src="https://via.placeholder.com/150/eab308/000000?text=CREADOR" class="vip-avatar" style="border-color: var(--neon-gold);">
+            <h4 style="font-size: 0.9rem; color: var(--neon-gold);">Creative Ymvs 🇻🇪</h4>
+            <p style="font-size: 0.75rem; color: #fff;">@creativeymvs</p>
+            <p style="font-size: 0.8rem; font-style: italic; margin-top: 5px;">"¡Bienvenidas al Portal Oficial BTS ARMY Neón! 👑✨"</p>
+            <div class="vip-watermark">@creativeymvs | BTS ARMY Portal ©</div>
+          </div>
+
+          <!-- Perfil Ejemplo 1 -->
+          <div class="vip-card" onclick="verPerfilModal('Sofia Gomez', '21', 'Venezuela 🇻🇪', 'Soltera', '@sofia_army', 'Jungkook', 'Seven', 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300', '¡Hola chicas! Orgullosa de ser BTS ARMY Venezuela. ✨')">
+            <span style="background: var(--neon-pink); color: #000; font-weight: bold; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;">TOP VIP</span>
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=300" class="vip-avatar">
+            <h4 style="font-size: 0.9rem;">Sofia Gomez 🇻🇪</h4>
+            <p style="font-size: 0.75rem; color: var(--neon-blue);">@sofia_army</p>
+            <p style="font-size: 0.8rem; font-style: italic; margin-top: 5px;">"¡Hola chicas! Orgullosa de ser BTS ARMY Venezuela. ✨"</p>
+            <div class="vip-watermark">@creativeymvs | BTS ARMY Portal ©</div>
+          </div>
+
+          <!-- Perfil Ejemplo 2 -->
+          <div class="vip-card" onclick="verPerfilModal('Camila Torres', '22', 'Colombia 🇨🇴', 'Soltera', '@cami_army', 'Jimin', 'Filter', 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300', '¡Saludos desde Bogotá! BTS por siempre. 💕')">
+            <span style="background: var(--neon-purple); color: #fff; font-weight: bold; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;">VIP STAR</span>
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=300" class="vip-avatar">
+            <h4 style="font-size: 0.9rem;">Camila Torres 🇨🇴</h4>
+            <p style="font-size: 0.75rem; color: var(--neon-blue);">@cami_army</p>
+            <p style="font-size: 0.8rem; font-style: italic; margin-top: 5px;">"¡Saludos desde Bogotá! BTS por siempre. 💕"</p>
+            <div class="vip-watermark">@creativeymvs | BTS ARMY Portal ©</div>
+          </div>
+        </div>
+        
+        <!-- Botones de Planes Top VIP -->
+        <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+          <button class="btn-neon btn-pink" onclick="abrirModalPago('Top VIP Portada (1 Día)', '2.00')"><i class="fa-solid fa-clock"></i> Destacar mi Foto en Portada por 1 Día ($2.00 USD)</button>
+          <button class="btn-neon btn-green" onclick="abrirModalPago('Top VIP Portada (1 Semana)', '7.00')"><i class="fa-solid fa-calendar-week"></i> Destacar mi Foto en Portada por 1 Semana ($7.00 USD)</button>
+        </div>
+      </div>
+
+      <!-- Radio BTS 24/7 -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-radio"></i> Radio Oficial BTS 24/7</h2>
         <audio controls autoplay loop>
           <source src="https://stream.zeno.fm/f3wvbbqmdg8uv" type="audio/mpeg">
-          Tu navegador no soporta el reproductor.
         </audio>
       </div>
-    </div>
 
-    <!-- Test de Compatibilidad con Fotos Reales -->
-    <div class="section-card">
-      <h2 class="section-title"><i class="fa-solid fa-heart"></i> Test de Compatibilidad Neón</h2>
-      <div class="compat-form">
-        <label>Tu Nombre / Usuario ARMY:</label>
-        <input type="text" id="user-name" placeholder="Ej: Sofia ARMY">
-        
-        <label>Elige a tu Bias Favorito:</label>
-        <select id="bias-select">
-          <option value="RM">RM (Namjoon)</option>
-          <option value="Jin">Jin (Seokjin)</option>
-          <option value="Suga">Suga (Yoongi)</option>
-          <option value="J-Hope">J-Hope (Hoseok)</option>
-          <option value="Jimin">Jimin</option>
-          <option value="V">V (Taehyung)</option>
-          <option value="Jungkook">Jungkook</option>
-        </select>
+      <!-- Test Compatibilidad -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-heart"></i> Test de Compatibilidad Neón</h2>
+        <div class="profile-form">
+          <label>Tu Nombre / Usuario ARMY:</label>
+          <input type="text" id="user-name" placeholder="Ej: Sofia ARMY">
+          
+          <label>Elige a tu Bias Favorito:</label>
+          <select id="bias-select">
+            <option value="RM">RM (Namjoon)</option>
+            <option value="Jin">Jin (Seokjin)</option>
+            <option value="Suga">Suga (Yoongi)</option>
+            <option value="J-Hope">J-Hope (Hoseok)</option>
+            <option value="Jimin">Jimin</option>
+            <option value="V">V (Taehyung)</option>
+            <option value="Jungkook">Jungkook</option>
+          </select>
 
-        <button class="btn-neon btn-pink" onclick="calcularCompatibilidad()">¡Calcular Compatibilidad!</button>
+          <button class="btn-neon btn-pink" onclick="calcularCompatibilidad()">¡Calcular Compatibilidad!</button>
+        </div>
+
+        <div id="card-result" style="display:none; background: linear-gradient(135deg, #180a29, #2b0c3d); border: 2px solid var(--neon-pink); border-radius: 15px; padding: 20px; text-align: center; margin-top: 15px;">
+          <div id="card-to-download">
+            <h3 style="color: var(--neon-pink);">CARNÉ DE COMPATIBILIDAD</h3>
+            <img id="bias-img" class="member-img-box" src="" alt="Bias">
+            <h4 id="res-names" style="color: #fff; margin-top: 5px;"></h4>
+            <p id="res-percent" style="font-size: 1.8rem; font-weight: bold; color: var(--neon-blue); margin: 10px 0;"></p>
+            <p style="font-size: 0.75rem; color: #aaa;">Certificado Oficial ARMY | @creativeymvs</p>
+          </div>
+          <button class="btn-neon" style="margin-top: 15px;" onclick="descargarTarjeta()"><i class="fa-solid fa-download"></i> Descargar Tarjeta Foto</button>
+        </div>
       </div>
 
-      <!-- Tarjeta Resultante -->
-      <div id="card-result">
-        <div id="card-to-download" style="padding: 15px;">
-          <h3 style="color: var(--neon-pink); text-shadow: 0 0 8px var(--neon-pink);">CARNÉ DE COMPATIBILIDAD</h3>
-          <img id="bias-img" class="member-img-box" src="" alt="Bias Real">
-          <h4 id="res-names" style="color: #fff; margin-top: 5px;"></h4>
-          <p id="res-percent" style="font-size: 1.8rem; font-weight: bold; color: var(--neon-blue); margin: 10px 0;"></p>
-          <p style="font-size: 0.75rem; color: #aaa;">Certificado Oficial ARMY | @creativeymvs</p>
-        </div>
-        <button class="btn-neon" style="margin-top: 15px;" onclick="descargarTarjeta()"><i class="fa-solid fa-download"></i> Descargar Tarjeta Foto</button>
-      </div>
-    </div>
-
-    <!-- Trivia Ardiente BTS -->
-    <div class="section-card">
-      <h2 class="section-title"><i class="fa-solid fa-fire"></i> Trivia Ardiente & Secretos BTS</h2>
-      <div class="trivia-box">
-        <p id="trivia-q" style="font-weight: bold; margin-bottom: 10px; color: var(--neon-blue);">¿Cuál de los integrantes es famoso por perder sus pertenencias y pasaporte constantemente?</p>
-        <div id="trivia-opts">
-          <button class="trivia-opt" onclick="checkTrivia(false)">Jimin</button>
-          <button class="trivia-opt" onclick="checkTrivia(true)">RM (Namjoon)</button>
-          <button class="trivia-opt" onclick="checkTrivia(false)">Suga</button>
-        </div>
+      <!-- Trivia Dinámica de 10 Preguntas -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-fire"></i> Trivia Dinámica BTS</h2>
+        <p id="trivia-q" style="font-weight: bold; margin-bottom: 12px; color: var(--neon-blue);"></p>
+        <div id="trivia-options-container"></div>
         <p id="trivia-res" style="margin-top: 10px; font-weight: bold;"></p>
+        <button class="btn-neon" style="margin-top: 12px; font-size: 0.8rem;" onclick="cargarTriviaAleatoria()"><i class="fa-solid fa-rotate"></i> Siguiente Pregunta Aleatoria</button>
       </div>
+
+      <!-- Galería Descargables HD -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-image"></i> Galería BTS HD (Descargables)</h2>
+        <div class="gallery-grid">
+          <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600">
+            <a href="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200" download target="_blank" class="btn-neon" style="font-size: 0.75rem; margin-top: 8px;">Descargar Wallpaper HD</a>
+          </div>
+          <div class="gallery-card">
+            <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=600">
+            <a href="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=1200" download target="_blank" class="btn-neon" style="font-size: 0.75rem; margin-top: 8px;">Descargar Wallpaper HD</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tienda -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-store"></i> Tienda ARMY & Afiliados</h2>
+        <div class="store-grid">
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300">
+            <div style="font-size: 0.85rem; font-weight: bold;">ARMY Bomb Lightstick Ver 4</div>
+            <span class="product-badge badge-amazon">Amazon</span>
+            <a href="#" target="_blank" class="btn-neon" style="font-size: 0.75rem;">Ver Oferta</a>
+          </div>
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300">
+            <div style="font-size: 0.85rem; font-weight: bold;">Set 55 Photocards Lomo</div>
+            <span class="product-badge badge-ali">AliExpress</span>
+            <a href="#" target="_blank" class="btn-neon" style="font-size: 0.75rem;">Comprar</a>
+          </div>
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=300">
+            <div style="font-size: 0.85rem; font-weight: bold;">Hoodie Oversize BTS K-Pop</div>
+            <span class="product-badge badge-shein">SheIn</span>
+            <a href="#" target="_blank" class="btn-neon" style="font-size: 0.75rem;">Ver Estilo</a>
+          </div>
+          <div class="product-card">
+            <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=300">
+            <div style="font-size: 0.85rem; font-weight: bold;">Llavero Neón BT21 Official</div>
+            <span class="product-badge badge-tiktok">TikTok Shop</span>
+            <a href="#" target="_blank" class="btn-neon" style="font-size: 0.75rem;">Ver Tienda</a>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Galería de Fotos Descargables -->
-    <div class="section-card">
-      <h2 class="section-title"><i class="fa-solid fa-image"></i> Galería BTS HD (Descargables)</h2>
-      <div class="gallery-grid">
+    <!-- VISTA MI PERFIL -->
+    <div id="profile-view" style="display:none;">
+
+      <!-- PANEL EXCLUSIVO CREADOR / ADMIN -->
+      <div class="section-card" style="border-color: var(--neon-gold); background: rgba(35, 25, 10, 0.9);">
+        <h2 class="section-title" style="color: var(--neon-gold);"><i class="fa-solid fa-crown"></i> Panel Creador / Admin</h2>
+        <p style="font-size: 0.8rem; color: #aaa; margin-bottom: 12px;">Acceso libre para cambiar fondos sin pagar y probar estilos:</p>
         
-        <div class="gallery-card">
-          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=400" alt="BTS 1">
-          <a href="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800" download="BTS-Foto1.jpg" target="_blank" class="btn-neon" style="font-size: 0.75rem; margin-top: 8px; width: 90%;">Descargar HD</a>
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <button class="btn-neon btn-gold" onclick="activarFondoGratis('')"><i class="fa-solid fa-rotate-left"></i> Fondo Oscuro Neón Estándar</button>
+          <button class="btn-neon btn-gold" onclick="activarFondoGratis('theme-degradado')"><i class="fa-solid fa-paint-brush"></i> Activar Nivel 1: Degradado Neón</button>
+          <button class="btn-neon btn-gold" onclick="activarFondoGratis('theme-bts')"><i class="fa-solid fa-heart"></i> Activar Nivel 2: BTS ARMY Exclusivo</button>
+          <button class="btn-neon btn-gold" onclick="activarFondoGratis('theme-galaxia')"><i class="fa-solid fa-meteor"></i> Activar Nivel 3: Galaxia Purple World</button>
         </div>
-
-        <div class="gallery-card">
-          <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=400" alt="BTS 2">
-          <a href="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=800" download="BTS-Foto2.jpg" target="_blank" class="btn-neon" style="font-size: 0.75rem; margin-top: 8px; width: 90%;">Descargar HD</a>
-        </div>
-
-        <div class="gallery-card">
-          <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400" alt="BTS 3">
-          <a href="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=800" download="BTS-Foto3.jpg" target="_blank" class="btn-neon" style="font-size: 0.75rem; margin-top: 8px; width: 90%;">Descargar HD</a>
-        </div>
-
       </div>
-    </div>
 
-    <!-- Tienda de Afiliados Estructurada -->
-    <div class="section-card">
-      <h2 class="section-title"><i class="fa-solid fa-store"></i> Tienda ARMY & Enlaces Afiliados</h2>
-      <div class="store-grid">
+      <!-- Formulario Usuarios Normales -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-user-gear"></i> Registrar / Editar Mi Perfil</h2>
         
-        <!-- Amazon 1 -->
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=300" alt="Lightstick">
-          <div class="product-title">ARMY Bomb Lightstick</div>
-          <span class="product-badge badge-amazon">Amazon</span>
-          <a href="TU_ENLACE_AMAZON_1" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Ver en Amazon</a>
-        </div>
+        <div class="profile-form">
+          <label>Foto de Perfil:</label>
+          <input type="file" id="p-avatar-input" accept="image/*" onchange="previewAvatar(event)">
+          <img id="p-avatar-preview" src="https://via.placeholder.com/100" style="width: 90px; height: 90px; border-radius: 50%; object-fit: cover; display: block; margin-bottom: 10px;">
 
-        <!-- Amazon 2 -->
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300" alt="Álbum">
-          <div class="product-title">Álbum Proof Oficial</div>
-          <span class="product-badge badge-amazon">Amazon</span>
-          <a href="TU_ENLACE_AMAZON_2" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Ver Oferta</a>
-        </div>
+          <label>Nombre y Apellido:</label>
+          <input type="text" id="p-name" placeholder="Ej: Maria Perez">
 
-        <!-- AliExpress 1 -->
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300" alt="Photocards">
-          <div class="product-title">Set 55 Photocards HD</div>
-          <span class="product-badge badge-ali">AliExpress</span>
-          <a href="TU_ENLACE_ALIEXPRESS_1" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Comprar</a>
-        </div>
+          <label>País de Origen:</label>
+          <select id="p-country">
+            <option value="Venezuela 🇻🇪">Venezuela 🇻🇪</option>
+            <option value="Colombia 🇨🇴">Colombia 🇨🇴</option>
+            <option value="México 🇲🇽">México 🇲🇽</option>
+            <option value="Perú 🇵🇪">Perú 🇵🇪</option>
+            <option value="Chile 🇨🇱">Chile 🇨🇱</option>
+            <option value="Argentina 🇦🇷">Argentina 🇦🇷</option>
+            <option value="España 🇪🇸">España 🇪🇸</option>
+            <option value="Otro País 🌎">Otro País 🌎</option>
+          </select>
 
-        <!-- AliExpress 2 -->
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?w=300" alt="Llaveros">
-          <div class="product-title">Llaveros BT21 Neón</div>
-          <span class="product-badge badge-ali">AliExpress</span>
-          <a href="TU_ENLACE_ALIEXPRESS_2" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Ver en Ali</a>
-        </div>
+          <label>Edad:</label>
+          <input type="number" id="p-age" placeholder="Ej: 20">
 
-        <!-- SheIn 1 -->
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=300" alt="Hoodie">
-          <div class="product-title">Hoodie BTS Oversize</div>
-          <span class="product-badge badge-shein">SheIn</span>
-          <a href="TU_ENLACE_SHEIN_1" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Ver Outfit</a>
-        </div>
+          <label>Sexo:</label>
+          <select id="p-sex">
+            <option>Femenino</option>
+            <option>Masculino</option>
+            <option>Otro</option>
+          </select>
 
-        <!-- SheIn 2 -->
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300" alt="Camiseta">
-          <div class="product-title">Polera Estilo K-Pop</div>
-          <span class="product-badge badge-shein">SheIn</span>
-          <a href="TU_ENLACE_SHEIN_2" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Ver en SheIn</a>
-        </div>
+          <label>Estado Sentimental:</label>
+          <select id="p-status">
+            <option>Soltera / Soltero</option>
+            <option>En una relación</option>
+            <option>Casada con mi Bias</option>
+          </select>
 
-        <!-- TikTok Shop 1 -->
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1512496015851-a90fb38ba796?w=300" alt="Merch Viral">
-          <div class="product-title">Proyector de Estrellas BTS</div>
-          <span class="product-badge badge-tiktok">TikTok Shop</span>
-          <a href="TU_ENLACE_TIKTOK_1" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Ver en TikTok</a>
-        </div>
+          <label>Tu Red Social (Instagram o TikTok):</label>
+          <input type="text" id="p-social" placeholder="Ej: @maria_army">
 
-        <!-- TikTok Shop 2 -->
-        <div class="product-card">
-          <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=300" alt="Camara Vintage">
-          <div class="product-title">Mini Cámara Estilo Taehyung</div>
-          <span class="product-badge badge-tiktok">TikTok Shop</span>
-          <a href="TU_ENLACE_TIKTOK_2" target="_blank" class="btn-neon" style="font-size: 0.75rem; padding: 6px;">Ver Tendencia</a>
-        </div>
+          <label>Integrante Favorito de BTS (Bias):</label>
+          <input type="text" id="p-bias" placeholder="Ej: Jungkook">
 
-      </div>
+          <label>Canción Favorita de BTS:</label>
+          <input type="text" id="p-song" placeholder="Ej: Spring Day">
 
-      <!-- Espacio Promocional Digital -->
-      <div style="margin-top: 20px; background: rgba(168, 85, 247, 0.15); border: 2px dashed var(--neon-pink); border-radius: 12px; padding: 15px; text-align: center;">
-        <h3 style="color: #fff; font-size: 1rem; margin-bottom: 5px;"><i class="fa-solid fa-book-open"></i> Libro, Guía & Afiches Digitales Exclusivos</h3>
-        <p style="font-size: 0.8rem; color: #ddd; margin-bottom: 10px;">Adquiere el kit digital oficial con pósters en HD y guías exclusivas escribiéndonos al privado.</p>
-        <a href="https://t.me/creativeymvs" target="_blank" class="btn-neon btn-pink" style="font-size: 0.85rem;">Pedir Kit Digital en Telegram</a>
-      </div>
-    </div>
+          <label>Muro Personal ("¿Qué estás pensando hoy?"):</label>
+          <textarea id="p-thought" rows="2" placeholder="Escribe un mensaje para la comunidad..."></textarea>
 
-    <!-- Muro de Comentarios con Subida de Fotos -->
-    <div class="section-card">
-      <h2 class="section-title"><i class="fa-solid fa-comments"></i> Muro ARMY (Publica con Foto)</h2>
-      <div class="comments-box" id="comments-container">
-        <div class="comment-item">
-          <span class="comment-author">Admin:</span> ¡Bienvenidas ARMYs! Suban sus fotos y dejen sus comentarios abajo.
+          <label>Galería Personal (Sube hasta 3 fotos):</label>
+          <input type="file" id="p-gallery-input" accept="image/*" multiple onchange="previewGallery(event)">
+          <div class="user-gallery-grid" id="p-gallery-preview"></div>
+
+          <button class="btn-neon btn-pink" style="margin-top: 10px;" onclick="guardarPerfil()">Guardar Perfil</button>
         </div>
       </div>
-      
-      <input type="text" id="comment-input" placeholder="Escribe tu mensaje ARMY..." style="width: 100%; padding: 10px; border-radius: 8px; border: 1px solid var(--neon-purple); background: #121124; color: #fff; margin-bottom: 8px;">
-      
-      <label style="font-size: 0.8rem; color: var(--neon-blue); display: block; margin-bottom: 5px;">Adjuntar foto (opcional):</label>
-      <input type="file" id="comment-img-input" accept="image/*" style="margin-bottom: 12px; color: #ccc; font-size: 0.8rem;">
 
-      <button class="btn-neon" onclick="agregarComentario()">Publicar Mensaje</button>
-    </div>
+      <!-- Personalizar Fondo VIP con Precios -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-palette"></i> Personalizar Fondo VIP del Perfil</h2>
+        <p style="font-size: 0.85rem; color: #ccc; margin-bottom: 12px;">Desbloquea estilos de fondo neón exclusivos eligiendo tu nivel preferido:</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <div style="background: rgba(168, 85, 247, 0.1); padding: 12px; border-radius: 10px; border: 1px solid var(--neon-purple);">
+            <h4 style="color: var(--neon-purple); margin-bottom: 4px;">🎨 Nivel 1: Degradado Neón Premium</h4>
+            <p style="font-size: 0.75rem; color: #aaa; margin-bottom: 8px;">Estilo sutil con degradado violeta neón y destellos rosados.</p>
+            <button class="btn-neon" onclick="abrirModalPago('Fondo Degradado Neón', '1.50')"><i class="fa-solid fa-paint-brush"></i> Activar por $1.50 USD (o Bs al cambio)</button>
+          </div>
 
-    <!-- Banner Canal Telegram VIP -->
-    <div class="telegram-banner">
-      <h3 style="color: #fff; margin-bottom: 5px;"><i class="fa-brands fa-telegram"></i> ¿Quieres más contenido exclusivo?</h3>
-      <p style="font-size: 0.85rem; color: #e0f2fe; margin-bottom: 12px;">Únete a nuestro canal VIP en Telegram con sorteos, fotos HD e interacción diaria.</p>
-      <a href="https://t.me/creativeymvs" target="_blank" class="btn-neon btn-pink" style="background: #fff; color: #000; text-shadow: none;">UNIRME A @creativeymvs</a>
+          <div style="background: rgba(236, 72, 153, 0.1); padding: 12px; border-radius: 10px; border: 1px solid var(--neon-pink);">
+            <h4 style="color: var(--neon-pink); margin-bottom: 4px;">💜 Nivel 2: BTS ARMY Exclusivo</h4>
+            <p style="font-size: 0.75rem; color: #aaa; margin-bottom: 8px;">Fondo K-Pop neón con marco brillante y sello de agua VIP.</p>
+            <button class="btn-neon btn-pink" onclick="abrirModalPago('Fondo BTS ARMY Exclusivo', '3.00')"><i class="fa-solid fa-heart"></i> Activar por $3.00 USD (o Bs al cambio)</button>
+          </div>
+
+          <div style="background: rgba(34, 197, 94, 0.1); padding: 12px; border-radius: 10px; border: 1px solid var(--neon-green);">
+            <h4 style="color: var(--neon-green); margin-bottom: 4px;">✨ Nivel 3: Galaxia Purple World (SUPREME VIP ⭐)</h4>
+            <p style="font-size: 0.75rem; color: #aaa; margin-bottom: 8px;">Fondo galáctico estelar animado con insignia especial de perfil.</p>
+            <button class="btn-neon btn-green" onclick="abrirModalPago('Fondo Galaxia Purple World', '5.00')"><i class="fa-solid fa-meteor"></i> Activar por $5.00 USD (o Bs al cambio)</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Chat Directo -->
+      <div class="section-card">
+        <h2 class="section-title"><i class="fa-solid fa-comments"></i> Mensajes en mi Perfil</h2>
+        <div class="chat-box" id="profile-chat-box">
+          <div class="chat-msg"><b>Admin:</b> ¡Bienvenida a tu perfil VIP! Aquí te dejarán mensajes tus amigas.</div>
+        </div>
+        <input type="text" id="profile-chat-input" placeholder="Escribe un mensaje..." style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid var(--neon-purple); background: #121124; color: #fff; margin-bottom: 8px;">
+        <button class="btn-neon" onclick="enviarMensajePerfil()">Enviar Mensaje</button>
+      </div>
+
     </div>
 
   </div>
 
+  <!-- MODAL DE PAGO AUTOMÁTICO -->
+  <div class="modal-overlay" id="pago-modal">
+    <div class="modal-content">
+      <h3 style="color: var(--neon-pink); text-align: center; margin-bottom: 10px;" id="modal-title">PAGO VIP AUTOMÁTICO</h3>
+      <p id="modal-price" style="text-align: center; color: var(--neon-blue); font-weight: bold; margin-bottom: 12px;"></p>
+      
+      <label style="font-size: 0.8rem; color: var(--neon-blue); display: block; margin-bottom: 5px;">Selecciona tu Método de Pago:</label>
+      <select id="pago-metodo" style="width: 100%; padding: 8px; border-radius: 8px; border: 1px solid var(--neon-purple); background: #121124; color: #fff; margin-bottom: 12px;" onchange="cambiarMetodoPago()">
+        <option value="pm">Pago Móvil (Venezuela 🇻🇪)</option>
+        <option value="paypal">PayPal (Internacional 🌎)</option>
+        <option value="zinli">Zinli (Internacional / Tarjeta 💳)</option>
+      </select>
+
+      <!-- Datos Reales Pago Móvil -->
+      <div id="box-pm" style="background: rgba(168, 85, 247, 0.15); padding: 12px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 12px;">
+        <p><b>Titular:</b> Creative Ymvs</p>
+        <p><b>Banco:</b> Banco Exterior (0115)</p>
+        <p><b>Cédula:</b> V-19828415</p>
+        <p><b>Teléfono:</b> 04127391195</p>
+        <p style="color: var(--neon-green); margin-top: 5px;">* Transferir monto equivalente a tasa BCV del día.</p>
+      </div>
+
+      <!-- Datos Reales Internacionales -->
+      <div id="box-int" style="display:none; background: rgba(6, 182, 212, 0.15); padding: 12px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 12px;">
+        <p id="int-info"><b>PayPal / Zinli:</b> ymvs2000@gmail.com</p>
+      </div>
+
+      <div class="profile-form">
+        <label>Número de Referencia / ID de Transacción:</label>
+        <input type="text" id="pago-ref" placeholder="Ej: 12345678">
+
+        <label>Foto del Comprobante (Captura de Pago):</label>
+        <input type="file" id="pago-img" accept="image/*">
+
+        <button class="btn-neon btn-green" style="margin-top: 10px;" onclick="confirmarPagoVIP()">Confirmar y Activar Inmediatamente</button>
+        <button class="btn-neon" style="margin-top: 8px; border-color: #666; color: #aaa;" onclick="cerrarModalPago()">Cancelar</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    // Enlaces de imágenes de alta calidad para cada integrante
+    /* =========================================================
+       SISTEMA DE PROTECCIÓN ANTI-ROBO Y ANTI-INSPECCIÓN
+       ========================================================= */
+    // Bloqueo de atajos de teclado (F12, Ctrl+U, Ctrl+Shift+I, Ctrl+S)
+    document.onkeydown = function(e) {
+      if (e.keyCode == 123 || 
+          (e.ctrlKey && e.shiftKey && e.keyCode == 73) || 
+          (e.ctrlKey && e.shiftKey && e.keyCode == 74) || 
+          (e.ctrlKey && e.keyCode == 85) || 
+          (e.ctrlKey && e.keyCode == 83)) {
+        return false;
+      }
+    };
+
+    // Anti-Debugger Loop
+    setInterval(function() {
+      const startTime = performance.now();
+      debugger;
+      const endTime = performance.now();
+      if (endTime - startTime > 100) {
+        document.body.innerHTML = "<h2 style='color:red; text-align:center; margin-top:50px;'>Acceso no autorizado al código detectado.</h2>";
+      }
+    }, 1000);
+
+    /* =========================================================
+       LÓGICA DEL PORTAL BTS ARMY NEÓN
+       ========================================================= */
+    let activeVIPFeature = "";
+    let activeVIPPrice = "";
+
+    function mostrarSeccion(id) {
+      document.getElementById('main-view').style.display = id === 'main-view' ? 'block' : 'none';
+      document.getElementById('profile-view').style.display = id === 'profile-view' ? 'block' : 'none';
+    }
+
+    function activarFondoGratis(className) {
+      document.body.className = className;
+      alert('👑 MODO CREADOR: Fondo activado directamente sin costo.');
+    }
+
+    function cambiarMetodoPago() {
+      const val = document.getElementById('pago-metodo').value;
+      const boxPm = document.getElementById('box-pm');
+      const boxInt = document.getElementById('box-int');
+      const intInfo = document.getElementById('int-info');
+
+      if (val === 'pm') {
+        boxPm.style.display = 'block';
+        boxInt.style.display = 'none';
+      } else {
+        boxPm.style.display = 'none';
+        boxInt.style.display = 'block';
+        if (val === 'paypal') {
+          intInfo.innerHTML = "<b>PayPal:</b> ymvs2000@gmail.com<br><small style='color:#aaa;'>Envía el pago como Amigos y Familiares.</small>";
+        } else if (val === 'zinli') {
+          intInfo.innerHTML = "<b>Zinli:</b> ymvs2000@gmail.com<br><small style='color:#aaa;'>Transferencia directa entre cuentas Zinli.</small>";
+        }
+      }
+    }
+
+    function abrirModalPago(featureName, price) {
+      activeVIPFeature = featureName;
+      activeVIPPrice = price;
+      document.getElementById('modal-title').innerText = "Activar: " + featureName;
+      document.getElementById('modal-price').innerText = "Monto a Pagar: $" + price + " USD";
+      document.getElementById('pago-modal').style.display = 'flex';
+      cambiarMetodoPago();
+    }
+
+    function cerrarModalPago() {
+      document.getElementById('pago-modal').style.display = 'none';
+    }
+
+    function confirmarPagoVIP() {
+      const ref = document.getElementById('pago-ref').value.trim();
+      const metodo = document.getElementById('pago-metodo').value;
+
+      if (!ref) {
+        alert('Por favor ingresa el número de referencia del pago.');
+        return;
+      }
+
+      if (activeVIPFeature === 'Fondo Degradado Neón') document.body.className = 'theme-degradado';
+      else if (activeVIPFeature === 'Fondo BTS ARMY Exclusivo') document.body.className = 'theme-bts';
+      else if (activeVIPFeature === 'Fondo Galaxia Purple World') document.body.className = 'theme-galaxia';
+
+      alert('¡Pago Registrado Exitosamente! Tu función VIP "' + activeVIPFeature + '" ha sido activada de inmediato.');
+      
+      const msgText = encodeURIComponent(`¡Nuevo Pago VIP Recibido! %0AOpción: ${activeVIPFeature} %0AMonto: $${activeVIPPrice} USD %0AMétodo: ${metodo.toUpperCase()} %0AReferencia: ${ref}`);
+      window.open(`https://t.me/creativeymvs?text=${msgText}`, '_blank');
+
+      cerrarModalPago();
+    }
+
+    function previewAvatar(event) {
+      const file = event.target.files[0];
+      if (file) document.getElementById('p-avatar-preview').src = URL.createObjectURL(file);
+    }
+
+    function previewGallery(event) {
+      const files = event.target.files;
+      const container = document.getElementById('p-gallery-preview');
+      container.innerHTML = "";
+      for (let i = 0; i < Math.min(files.length, 3); i++) {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(files[i]);
+        container.appendChild(img);
+      }
+    }
+
+    function guardarPerfil() {
+      const name = document.getElementById('p-name').value;
+      const country = document.getElementById('p-country').value;
+      const thought = document.getElementById('p-thought').value;
+      const avatarSrc = document.getElementById('p-avatar-preview').src;
+      const social = document.getElementById('p-social').value;
+
+      if (!name) { alert('Por favor coloca tu Nombre y Apellido.'); return; }
+
+      const carousel = document.getElementById('vip-carousel');
+      const card = document.createElement('div');
+      card.className = 'vip-card';
+      card.onclick = () => verPerfilModal(name, document.getElementById('p-age').value, country, document.getElementById('p-status').value, social, document.getElementById('p-bias').value, document.getElementById('p-song').value, avatarSrc, thought);
+      
+      card.innerHTML = `
+        <span style="background: var(--neon-pink); color: #000; font-weight: bold; font-size: 0.65rem; padding: 2px 6px; border-radius: 4px;">NUEVO PERFIL</span>
+        <img src="${avatarSrc}" class="vip-avatar">
+        <h4 style="font-size: 0.9rem;">${name} ${country.split(' ')[1] || ''}</h4>
+        <p style="font-size: 0.75rem; color: var(--neon-blue);">${social}</p>
+        <p style="font-size: 0.8rem; font-style: italic; margin-top: 5px;">"${thought}"</p>
+        <div class="vip-watermark">@creativeymvs | BTS ARMY Portal ©</div>
+      `;
+      carousel.prepend(card);
+
+      alert('¡Perfil Guardado Exitosamente!');
+      mostrarSeccion('main-view');
+    }
+
+    function verPerfilModal(name, age, country, status, social, bias, song, avatar, thought) {
+      alert(`PERFIL ARMY VIP:\n\n👤 Nombre: ${name}\n🌎 País: ${country}\n🎂 Edad: ${age}\n💍 Estado: ${status}\n📱 Red Social: ${social}\n💜 Bias Favorito: ${bias}\n🎵 Canción: ${song}\n💬 Pensamiento: "${thought}"`);
+    }
+
+    function buscarUsuario() {
+      const query = document.getElementById('search-user').value.toLowerCase();
+      const results = document.getElementById('search-results');
+      if (query === "") { results.innerHTML = ""; return; }
+      results.innerHTML = `<div style="padding: 10px; background: #18122c; border-radius: 8px; border: 1px solid var(--neon-pink);">
+        <p style="font-size: 0.85rem; color: #fff;">Buscando usuarios que coincidan con "${query}"...</p>
+      </div>`;
+    }
+
     const biasData = {
       "RM": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300",
       "Jin": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300",
@@ -519,24 +680,17 @@
     function calcularCompatibilidad() {
       const name = document.getElementById('user-name').value.trim();
       const bias = document.getElementById('bias-select').value;
+      if (!name) { alert('Ingresa tu nombre'); return; }
 
-      if (!name) {
-        alert('Por favor ingresa tu nombre o usuario.');
-        return;
-      }
-
-      const percent = Math.floor(Math.random() * 16) + 85; // Entre 85% y 100%
-
+      const percent = Math.floor(Math.random() * 16) + 85;
       document.getElementById('bias-img').src = biasData[bias];
       document.getElementById('res-names').innerText = `${name} ❤️ ${bias}`;
       document.getElementById('res-percent').innerText = `${percent}% COMPATIBLE`;
-      
       document.getElementById('card-result').style.display = 'block';
     }
 
     function descargarTarjeta() {
-      const card = document.getElementById('card-to-download');
-      html2canvas(card, { backgroundColor: '#180a29' }).then(canvas => {
+      html2canvas(document.getElementById('card-to-download'), { backgroundColor: '#180a29' }).then(canvas => {
         const link = document.createElement('a');
         link.download = 'BTS-Compatibilidad.png';
         link.href = canvas.toDataURL();
@@ -544,44 +698,61 @@
       });
     }
 
-    function checkTrivia(isCorrect) {
-      const res = document.getElementById('trivia-res');
-      if(isCorrect) {
-        res.style.color = '#22c55e';
-        res.innerText = "¡Correcto! Namjoon (RM) es súper despistado y ha perdido más de 30 pares de AirPods y su pasaporte en viajes.";
-      } else {
-        res.style.color = '#ef4444';
-        res.innerText = "¡Incorrecto! La respuesta correcta es RM (Namjoon). ¡Sigue intentando!";
-      }
+    /* TRIVIA DINÁMICA DE 10 PREGUNTAS ALEATORIAS */
+    const triviaQuestions = [
+      { q: "¿Cuál de los integrantes es famoso por perder sus pertenencias constantemente?", opts: ["Jimin", "RM (Namjoon)", "Suga"], correct: 1 },
+      { q: "¿Qué integrante tiene el apodo de 'Worldwide Handsome'?", opts: ["Jin (Seokjin)", "V (Taehyung)", "Jungkook"], correct: 0 },
+      { q: "¿En qué año debutó oficialmente BTS con 'No More Dream'?", opts: ["2011", "2013", "2015"], correct: 1 },
+      { q: "¿Cuál es el color oficial que representa la frase 'I Purple You' / Borahae?", opts: ["Rosa Neón", "Morado / Púrpura", "Azul Celeste"], correct: 1 },
+      { q: "¿Qué integrante es conocido como el 'Golden Maknae'?", opts: ["J-Hope", "Jimin", "Jungkook"], correct: 2 },
+      { q: "¿Cuál fue el primer sencillo en inglés de BTS en ser #1 en Billboard Hot 100?", opts: ["Butter", "Dynamite", "Permission to Dance"], correct: 1 },
+      { q: "¿Qué integrante compuso la famosa canción 'Agust D'?", opts: ["Suga (Yoongi)", "RM", "J-Hope"], correct: 0 },
+      { q: "¿Quién es el bailarín principal conocido por su energía y sonrisa de sol?", opts: ["J-Hope (Hoseok)", "Jin", "V"], correct: 0 },
+      { q: "¿Qué integrante fue nombrado el hombre más hermoso del mundo según varias listas internacionales?", opts: ["V (Taehyung)", "Jungkook", "Jimin"], correct: 0 },
+      { q: "¿Qué significa las siglas de ARMY para el fandom de BTS?", opts: ["Adorable Representative M.C. for Youth", "All Royal Musical Youth", "Always Ready Music Young"], correct: 0 }
+    ];
+
+    function cargarTriviaAleatoria() {
+      const randIndex = Math.floor(Math.random() * triviaQuestions.length);
+      const qData = triviaQuestions[randIndex];
+      
+      document.getElementById('trivia-q').innerText = qData.q;
+      document.getElementById('trivia-res').innerText = "";
+      
+      const container = document.getElementById('trivia-options-container');
+      container.innerHTML = "";
+
+      qData.opts.forEach((opt, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'trivia-opt';
+        btn.innerText = opt;
+        btn.onclick = () => {
+          const res = document.getElementById('trivia-res');
+          if (idx === qData.correct) {
+            res.innerText = "¡CORRECTO! ✨ ¡Eres una verdadera ARMY VIP!";
+            res.style.color = "#22c55e";
+          } else {
+            res.innerText = "¡INCORRECTO! 😅 Inténtalo con la siguiente pregunta.";
+            res.style.color = "#ef4444";
+          }
+        };
+        container.appendChild(btn);
+      });
     }
 
-    function agregarComentario() {
-      const textInput = document.getElementById('comment-input');
-      const imgInput = document.getElementById('comment-img-input');
-      const text = textInput.value.trim();
-      const file = imgInput.files[0];
+    window.onload = () => {
+      cargarTriviaAleatoria();
+    };
 
-      if (text === "" && !file) {
-        alert('Por favor escribe un mensaje o selecciona una imagen.');
-        return;
-      }
-
-      const container = document.getElementById('comments-container');
-      const item = document.createElement('div');
-      item.className = 'comment-item';
-
-      let imgHtml = "";
-      if (file) {
-        const imgUrl = URL.createObjectURL(file);
-        imgHtml = `<br><img src="${imgUrl}" class="comment-img">`;
-      }
-
-      item.innerHTML = `<span class="comment-author">ARMY:</span> ${text} ${imgHtml}`;
-      container.appendChild(item);
-
-      textInput.value = "";
-      imgInput.value = "";
-      container.scrollTop = container.scrollHeight;
+    function enviarMensajePerfil() {
+      const txt = document.getElementById('profile-chat-input').value;
+      if (!txt) return;
+      const box = document.getElementById('profile-chat-box');
+      const msg = document.createElement('div');
+      msg.className = 'chat-msg';
+      msg.innerHTML = `<b>ARMY:</b> ${txt}`;
+      box.appendChild(msg);
+      document.getElementById('profile-chat-input').value = "";
     }
   </script>
 
