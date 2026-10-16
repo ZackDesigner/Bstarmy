@@ -7,16 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-gradient: linear-gradient(135deg, #ff007f 0%, #00f2fe 100%);
-            --card-bg: rgba(15, 12, 25, 0.90);
-            --neon-pink: #ff007f;
-            --neon-turq: #00f2fe;
+            --bg-color: #0a0a0f;
+            --card-bg: rgba(20, 15, 35, 0.85);
             --neon-purple: #a855f7;
+            --neon-pink: #ec4899;
+            --neon-blue: #06b6d4;
+            --neon-green: #22c55e;
             --neon-gold: #eab308;
-            --text-color: #ffffff;
+            --text-color: #f3f4f6;
         }
 
-        /* Bloqueo estricto de selección y copia */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -27,8 +27,7 @@
         }
 
         body {
-            background: var(--bg-gradient);
-            background-attachment: fixed;
+            background-color: var(--bg-color);
             color: var(--text-color);
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             min-height: 100vh;
@@ -46,255 +45,390 @@
             position: relative;
         }
 
-        /* Corona ultra discreta para el Creador */
         .secret-crown {
             position: absolute;
-            top: 5px;
-            right: 10px;
+            top: 0;
+            right: 0;
             background: none;
             border: none;
-            color: rgba(255, 255, 255, 0.4);
-            font-size: 1rem;
+            color: var(--neon-gold);
+            font-size: 1.2rem;
             cursor: pointer;
-            z-index: 100;
+            opacity: 0.6;
         }
 
         header h1 {
             font-size: 2rem;
-            text-shadow: 0 0 10px rgba(0,0,0,0.7);
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .card {
+        .container {
             width: 100%;
             max-width: 500px;
             background: var(--card-bg);
-            border-radius: 18px;
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 20px;
             padding: 20px;
+            box-shadow: 0 0 25px rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
             margin-bottom: 20px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .card h2 {
+        .section-title {
+            color: var(--neon-purple);
             font-size: 1.2rem;
-            color: var(--neon-turq);
             margin-bottom: 12px;
             display: flex;
             align-items: center;
             gap: 8px;
         }
 
-        /* Cambiador de Fondos Neón Gratis */
-        .theme-selector {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .theme-btn {
-            flex: 1;
-            padding: 8px;
-            border-radius: 10px;
+        .btn-action {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, var(--neon-purple), var(--neon-pink));
             border: none;
+            border-radius: 12px;
             color: white;
             font-weight: bold;
-            font-size: 0.8rem;
             cursor: pointer;
+            margin-top: 8px;
+            font-size: 0.95rem;
+            transition: transform 0.2s;
         }
 
-        /* Tienda & Pago Móvil */
-        .prod-item {
-            background: rgba(255,255,255,0.05);
-            padding: 12px;
+        .btn-action:active {
+            transform: scale(0.98);
+        }
+
+        /* 1. Muro Army */
+        .chat-history {
+            max-height: 220px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-msg {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 10px;
+            border-radius: 10px;
+            border-left: 3px solid var(--neon-pink);
+        }
+
+        .chat-msg img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-top: 5px;
+            pointer-events: none;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #374151;
+            background: #1f2937;
+            color: white;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        /* 2. Juegos Modales */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .game-card-btn {
+            background: rgba(168, 85, 247, 0.15);
+            border: 1px solid var(--neon-purple);
             border-radius: 12px;
+            padding: 12px 5px;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+        }
+
+        /* 3. News Ticker / Ticker Dinámico */
+        .news-box {
+            background: rgba(6, 182, 212, 0.1);
+            border: 1px solid var(--neon-blue);
+            border-radius: 12px;
+            padding: 12px;
+            min-height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--neon-blue);
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        /* 4. Tienda de Recursos y Modal de Pago */
+        .resource-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 12px;
             margin-bottom: 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .btn-pay {
-            background: linear-gradient(45deg, #22c55e, #16a34a);
-            border: none;
-            padding: 8px 14px;
-            border-radius: 8px;
-            color: white;
-            font-weight: bold;
-            cursor: pointer;
+
+        /* 5. Generador VIP Carrusel 10 Fotos */
+        .carousel-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scroll-snap-type: x mandatory;
         }
 
-        /* Generador VIP Anti-Descarga ($1.50) */
-        .vip-gallery {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
-            margin-top: 10px;
-        }
-        .vip-item {
+        .carousel-item {
+            min-width: 140px;
+            height: 220px;
+            border-radius: 12px;
             position: relative;
-            border-radius: 10px;
             overflow: hidden;
-            height: 180px;
             background: #111;
+            scroll-snap-align: start;
+            border: 1px solid var(--neon-gold);
         }
-        .vip-item img {
+
+        .carousel-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             pointer-events: none;
         }
-        /* Escudo transparente que impide guardar/descargar */
-        .shield {
+
+        .img-shield {
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.1);
-            z-index: 5;
+            z-index: 10;
+            background: transparent;
         }
 
-        /* Muro de Comentarios Multimedia */
-        .chat-box {
-            max-height: 200px;
-            overflow-y: auto;
-            margin-bottom: 10px;
+        /* 6. Mercado Virtual */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
         }
-        .chat-input {
-            width: 100%;
+
+        .market-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 10px;
             padding: 8px;
-            border-radius: 8px;
-            border: 1px solid #444;
-            background: #222;
-            color: white;
-            margin-bottom: 8px;
+            text-align: center;
+            font-size: 0.75rem;
         }
 
-        /* Modal Privado Oculto del Creador */
-        #creator-modal {
+        .market-item img {
+            width: 100%;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 6px;
+            margin-bottom: 5px;
+        }
+
+        .market-btn {
+            display: block;
+            margin-top: 5px;
+            padding: 5px;
+            background: var(--neon-pink);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        /* Modales Generales */
+        .modal {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9);
+            background: rgba(0, 0, 0, 0.85);
             z-index: 9999;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 15px;
         }
-        .modal-content {
-            background: #15102a;
-            border: 2px solid var(--neon-gold);
+
+        .modal-body {
+            background: #120e24;
+            border: 2px solid var(--neon-purple);
             border-radius: 20px;
             padding: 20px;
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
+            max-height: 90vh;
+            overflow-y: auto;
         }
 
         footer {
             text-align: center;
             font-size: 0.8rem;
-            color: rgba(255,255,255,0.8);
-            margin: 20px 0;
+            color: #9ca3af;
+            margin-top: 10px;
+            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <!-- Corona secreta de acceso -->
-        <button class="secret-crown" onclick="loginCreador()">👑</button>
+        <button class="secret-crown" onclick="accesoCreador()">👑</button>
         <h1>BTS ARMY World</h1>
-        <p style="font-size:0.85rem;">Comunidad Oficial | @creativeymvs</p>
+        <p style="font-size:0.85rem; color:#9ca3af;">@creativeymvs | Portal Oficial</p>
     </header>
 
-    <!-- 1. Cambiador de Fondos Gratis Neón -->
-    <div class="card">
-        <h2>🎨 Personaliza tu Vista Gratis</h2>
-        <div class="theme-selector">
-            <button class="theme-btn" style="background: linear-gradient(135deg, #ff007f, #00f2fe);" onclick="setTheme(1)">Fucsia + Turquesa</button>
-            <button class="theme-btn" style="background: linear-gradient(135deg, #a855f7, #1e1b4b);" onclick="setTheme(2)">Púrpura Neón VIP</button>
-        </div>
-    </div>
-
-    <!-- 2. Noticia Diaria BTS -->
-    <div class="card">
-        <h2>📰 Noticia BTS del Día</h2>
-        <p id="news-text" style="font-size:0.9rem; line-height:1.4; color:#ddd;">Cargando la última novedad de BTS ARMY...</p>
-    </div>
-
-    <!-- 3. Tienda Digital BTS ARMY -->
-    <div class="card">
-        <h2>📚 Tienda de Recursos Digitales</h2>
-        <div class="prod-item">
-            <div>
-                <strong>Pack Libros BTS (PDF)</strong><br>
-                <small style="color:#aaa;">Acceso directo Drive</small>
+    <!-- 1. MURO ARMY COMENTARIOS (PRIMERO) -->
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-comments"></i> Muro ARMY Interactivo</h2>
+        <div class="chat-history" id="chatHistory">
+            <div class="chat-msg">
+                <strong>@creativeymvs 👑:</strong> ¡Bienvenidos al nuevo portal oficial ARMY! Dejen sus mensajes y fotos aquí abajo. ✨
             </div>
-            <button class="btn-pay" onclick="mostrarPago('Pack Libros BTS', '2.00$')">Comprar</button>
         </div>
-        <div class="prod-item">
+        <input type="text" id="chatUser" class="input-field" placeholder="Tu Apodo / Nombre ARMY...">
+        <textarea id="chatText" class="input-field" placeholder="Escribe tu mensaje..." rows="2"></textarea>
+        <input type="text" id="chatImg" class="input-field" placeholder="Enlace URL de Foto (Opcional)...">
+        <button class="btn-action" onclick="publicarComentario()">Publicar en el Muro</button>
+    </div>
+
+    <!-- 2. JUEGOS Y TRIVIAS (SEGUNDO) -->
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-gamepad"></i> Zona de Juegos BTS</h2>
+        <div class="game-grid">
+            <button class="game-card-btn" onclick="abrirTrivia('estrella')">Trivia 🌟</button>
+            <button class="game-card-btn" style="border-color:var(--neon-pink);" onclick="abrirTrivia('fuego')">Trivia 😈🔥</button>
+            <button class="game-card-btn" style="border-color:var(--neon-blue);" onclick="abrirCompatibilidad()">Compatibilidad 💘</button>
+        </div>
+    </div>
+
+    <!-- 3. GENERADOR DE NOTICIAS DINÁMICO -->
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-newspaper"></i> Noticia BTS del Día</h2>
+        <div class="news-box" id="newsTicker">
+            Cargando la noticia más reciente de BTS...
+        </div>
+    </div>
+
+    <!-- 4. TIENDA DE RECURSOS DIGITALES -->
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-store"></i> Tienda de Recursos Digitales</h2>
+        
+        <div class="resource-card">
             <div>
-                <strong>Afiches Editables Canva</strong><br>
-                <small style="color:#aaa;">Plantillas HD para redes</small>
+                <strong>Pack Libros BTS (PDF) 📚</strong><br>
+                <small style="color:#aaa;">Biografías y Colección Exclusiva</small>
             </div>
-            <button class="btn-pay" onclick="mostrarPago('Afiches Canva BTS', '1.50$')">Comprar</button>
+            <button class="btn-action" style="width:auto; padding:8px 12px;" onclick="solicitarCompra('Pack Libros BTS 📚', '2.00$')">Comprar</button>
+        </div>
+
+        <div class="resource-card">
+            <div>
+                <strong>Afiches Editables Canva BTS 🎨</strong><br>
+                <small style="color:#aaa;">Plantillas HD para Redes</small>
+            </div>
+            <button class="btn-action" style="width:auto; padding:8px 12px;" onclick="solicitarCompra('Afiches Editables Canva 🎨', '1.50$')">Comprar</button>
         </div>
     </div>
 
-    <!-- 4. Generador Top VIP - Fondos de Teléfono ($1.50) -->
-    <div class="card">
-        <h2>🖼️ Generador VIP Portadas Teléfono ($1.50)</h2>
-        <p style="font-size:0.8rem; color:#aaa; margin-bottom:8px;">Vista previa protegida. Paga $1.50 para recibir el pack HD libre de marcas.</p>
-        <div class="vip-gallery">
-            <div class="vip-item"><div class="shield"></div><img src="https://picsum.photos/300/500?random=1" alt="Preview 1"></div>
-            <div class="vip-item"><div class="shield"></div><img src="https://picsum.photos/300/500?random=2" alt="Preview 2"></div>
+    <!-- 5. GENERADOR TOP VIP - PORTADAS TELÉFONO (10 FOTOS CARRUSEL) -->
+    <div class="container">
+        <h2 class="section-title" style="color:var(--neon-gold);"><i class="fas fa-mobile-alt"></i> Generador VIP Portadas ($1.50)</h2>
+        <p style="font-size:0.8rem; color:#aaa; margin-bottom:10px;">Carrusel de 10 fondos exclusivos. Pago de $1.50 desbloquea la descarga HD.</p>
+
+        <div class="carousel-container">
+            <!-- 10 Ítems Protegidos -->
+            <div class="carousel-item"><div class="img-shield" oncontextmenu="return false;"></div><img src="https://picsum.photos/300/500?random=1" alt="Preview 1"></div>
+            <div class="carousel-item"><div class="img-shield" oncontextmenu="return false;"></div><img src="https://picsum.photos/300/500?random=2" alt="Preview 2"></div>
+            <div class="carousel-item"><div class="img-shield" oncontextmenu="return false;"></div><img src="https://picsum.photos/300/500?random=3" alt="Preview 3"></div>
+            <div class="carousel-item"><div class="img-shield" oncontextmenu="return false;"></div><img src="https://picsum.photos/300/500?random=4" alt="Preview 4"></div>
+            <div class="carousel-item"><div class="img-shield" oncontextmenu="return false;"></div><img src="https://picsum.photos/300/500?random=5" alt="Preview 5"></div>
+            <div class="carousel-item"><div class="img-shield" oncontextmenu="return false;"></div><img src="https://picsum.photos/300/500?random=6" alt="Preview 6"></div>
+            <div class="carousel-item"><div class="img-shield" oncontextmenu="return false;"></div><img src="https://picsum.photos/300/500?random=7" alt="Preview 7"></div>
+            <div class="carousel-item"><div class="img-shield" oncontextmenu="return false;"></div><img src="https://picsum.photos/300/500?random=8" alt="Preview 8"></div>
+            <div class="carousel-item"><div class="img-shield" oncontextmenu="return false;"></div><img src="https://picsum.photos/300/500?random=9" alt="Preview 9"></div>
+            <div class="carousel-item"><div class="img-shield" oncontextmenu="return false;"></div><img src="https://picsum.photos/300/500?random=10" alt="Preview 10"></div>
         </div>
-        <button class="btn-pay" style="width:100%; margin-top:10px;" onclick="mostrarPago('Pack 10 Fondos VIP Teléfono', '1.50$')">Desbloquear Pack Completo ($1.50)</button>
+
+        <button class="btn-action" style="background:linear-gradient(45deg, var(--neon-gold), #f97316);" onclick="solicitarCompra('Pack 10 Fondos VIP Teléfono 📱', '1.50$')">Desbloquear Pack Completo ($1.50)</button>
     </div>
 
-    <!-- 5. Muro de Comentarios Multimedia -->
-    <div class="card">
-        <h2>💬 Muro ARMY Comentarios</h2>
-        <div class="chat-box" id="chat-messages">
-            <p style="font-size:0.85rem; color:#ccc;"><b>ARMY_💜:</b> ¡Me encanta el portal! Saludos desde Latam ✨</p>
-        </div>
-        <input type="text" id="chatText" class="chat-input" placeholder="Escribe tu mensaje o enlace video YouTube...">
-        <button class="btn-pay" style="width:100%;" onclick="enviarMensaje()">Enviar al Muro</button>
-    </div>
-
-    <!-- 6. Tienda Recomendaciones (Amazon / AliExpress / SHEIN) -->
-    <div class="card">
-        <h2>🛍️ Merch Recomendado BTS</h2>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:0.8rem;">
-            <a href="https://amazon.com" target="_blank" style="color:var(--neon-turq); text-decoration:none;">🛒 Amazon Item 1</a>
-            <a href="https://amazon.com" target="_blank" style="color:var(--neon-turq); text-decoration:none;">🛒 Amazon Item 2</a>
-            <a href="https://aliexpress.com" target="_blank" style="color:var(--neon-turq); text-decoration:none;">📦 AliExpress Item 1</a>
-            <a href="https://shein.com" target="_blank" style="color:var(--neon-turq); text-decoration:none;">👗 SHEIN Item 1</a>
-        </div>
-    </div>
-
-    <!-- 7. Descargas Gratis (4 Videos BTS) -->
-    <div class="card">
-        <h2>🎬 4 Videos BTS Gratis para WhatsApp</h2>
-        <p style="font-size:0.8rem; color:#aaa; margin-bottom:8px;">Descarga directa para compartir en tus estados:</p>
-        <div style="display:flex; flex-direction:column; gap:5px; font-size:0.85rem;">
-            <a href="#" style="color:#22c55e;">⬇️ Video 1: Concert Highlights.mp4</a>
-            <a href="#" style="color:#22c55e;">⬇️ Video 2: Funny Moments.mp4</a>
+    <!-- 6. MERCADO VIRTUAL (AMAZON, ALIEXPRESS, SHEIN) -->
+    <div class="container">
+        <h2 class="section-title"><i class="fas fa-shopping-bag"></i> Mercado Virtual ARMY</h2>
+        <div class="market-grid">
+            <div class="market-item">
+                <img src="https://picsum.photos/100/100?random=20" alt="Amazon">
+                <strong>Amazon BTS</strong>
+                <a href="https://amazon.com" target="_blank" class="market-btn">Ver Oferta</a>
+            </div>
+            <div class="market-item">
+                <img src="https://picsum.photos/100/100?random=21" alt="AliExpress">
+                <strong>AliExpress</strong>
+                <a href="https://aliexpress.com" target="_blank" class="market-btn">Ver Oferta</a>
+            </div>
+            <div class="market-item">
+                <img src="https://picsum.photos/100/100?random=22" alt="SHEIN">
+                <strong>SHEIN BTS</strong>
+                <a href="https://shein.com" target="_blank" class="market-btn">Ver Oferta</a>
+            </div>
         </div>
     </div>
 
-    <!-- 8. Trivia BTS con Certificado -->
-    <div class="card">
-        <h2>🎮 Trivia BTS ARMY</h2>
-        <p style="font-size:0.85rem;">¿En qué año debutó BTS?</p>
-        <button class="theme-btn" style="background:#333; margin-top:5px; width:100%;" onclick="responderTrivia(true)">2013</button>
-        <button class="theme-btn" style="background:#333; margin-top:5px; width:100%;" onclick="responderTrivia(false)">2015</button>
+    <!-- MODAL DE PAGO Y DESBLOQUEO -->
+    <div class="modal" id="modalPago">
+        <div class="modal-body">
+            <h3 style="color:var(--neon-green); text-align:center; margin-bottom:10px;"><i class="fas fa-file-invoice-dollar"></i> Formulario de Pago</h3>
+            <p id="pagoProductoNombre" style="font-weight:bold; text-align:center; color:var(--neon-gold);"></p>
+            
+            <div style="background:rgba(255,255,255,0.05); padding:10px; border-radius:10px; margin:10px 0; font-size:0.85rem; line-height:1.5;">
+                <p><strong>🏦 Pago Móvil (Venezuela):</strong></p>
+                <p>Banco: <b>Banco Exterior</b></p>
+                <p>C.I.: <b>19828415</b></p>
+                <p>Teléfono: <b>04127391195</b></p>
+                <hr style="border-color:#444; margin:8px 0;">
+                <p><strong>🌐 Pago Internacional:</strong></p>
+                <p>PayPal / Zinli: <b>ymvs2000@gmail.com</b></p>
+            </div>
+
+            <label style="font-size:0.8rem;">Sube la Foto del Comprobante (URL o Enlace):</label>
+            <input type="text" id="comprobanteUrl" class="input-field" placeholder="Pega el enlace del comprobante...">
+            
+            <button class="btn-action" style="background:var(--neon-green);" onclick="procesarEnvioPago()">Enviar Comprobante y Desbloquear</button>
+            <button class="btn-action" style="background:#4b5563; margin-top:5px;" onclick="cerrarModal('modalPago')">Cancelar</button>
+        </div>
     </div>
 
-    <!-- MODAL INVISIBLE DEL CREADOR (Solo abre al poner credenciales) -->
-    <div id="creator-modal">
-        <div class="modal-content">
-            <h3 style="color:var(--neon-gold); text-align:center; margin-bottom:10px;">👑 Panel Privado Creador</h3>
-            <p style="font-size:0.8rem; color:#ccc; margin-bottom:10px;">Ajustes de Pago Móvil y Enlaces Google Drive:</p>
-            <input type="text" class="chat-input" id="pagoMovilDatos" value="Pago Móvil: 0412-0000000 | CI: 12345678 | Banco: Banesco">
-            <button class="btn-pay" style="width:100%; margin-top:5px;" onclick="guardarPanel()">Guardar Ajustes</button>
-            <button class="theme-btn" style="background:#555; width:100%; margin-top:5px;" onclick="cerrarModal()">Cerrar</button>
+    <!-- MODAL DE JUEGOS Y TRIVIAS -->
+    <div class="modal" id="modalJuego">
+        <div class="modal-body" id="juegoContenido">
+            <!-- Contenido dinámico inyectado por JS -->
+        </div>
+    </div>
+
+    <!-- MODAL SECRETO CREADOR -->
+    <div class="modal" id="modalCreador">
+        <div class="modal-body">
+            <h3 style="color:var(--neon-gold); text-align:center; margin-bottom:10px;">👑 Panel de Creador</h3>
+            <p style="font-size:0.85rem; color:#aaa; margin-bottom:10px;">Bienvenido Creativeymvs. Aquí puedes modificar enlaces de Google Drive de prueba:</p>
+            <input type="text" class="input-field" id="driveDemoUrl" value="https://drive.google.com/drive/u/0/my-drive">
+            <button class="btn-action" onclick="alert('Enlace Drive actualizado con éxito'); cerrarModal('modalCreador');">Guardar Cambios</button>
+            <button class="btn-action" style="background:#4b5563; margin-top:5px;" onclick="cerrarModal('modalCreador')">Cerrar</button>
         </div>
     </div>
 
@@ -303,7 +437,7 @@
     </footer>
 
     <script>
-        // Bloqueos estricto anti-copia
+        // Protección Anti-Copia
         document.addEventListener('contextmenu', e => e.preventDefault());
         document.addEventListener('keydown', e => {
             if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J')) || (e.ctrlKey && e.key === 'U')) {
@@ -311,66 +445,70 @@
             }
         });
 
-        // Cambiar Fondos Gratis
-        function setTheme(num) {
-            if (num === 1) {
-                document.documentElement.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #ff007f 0%, #00f2fe 100%)');
-            } else {
-                document.documentElement.style.setProperty('--bg-gradient', 'linear-gradient(135deg, #a855f7 0%, #1e1b4b 100%)');
+        // 1. Noticia Dinámica
+        const noticias = [
+            "✨ ¡BTS anuncia sorpresas exclusivas y nuevos proyectos grupales para la comunidad ARMY!",
+            "🔥 'Dynamite' y 'Butter' rompen nuevos récords de reproducciones globales este mes.",
+            "💜 @creativeymvs lanza el nuevo pack VIP exclusivo con recursos de Canva y fondos para teléfono."
+        ];
+        let newsIdx = 0;
+        setInterval(() => {
+            const ticker = document.getElementById('newsTicker');
+            ticker.style.opacity = '0';
+            setTimeout(() => {
+                newsIdx = (newsIdx + 1) % noticias.length;
+                ticker.innerText = noticias[newsIdx];
+                ticker.style.opacity = '1';
+            }, 500);
+        }, 4000);
+
+        // 2. Muro ARMY
+        function publicarComentario() {
+            let user = document.getElementById('chatUser').value || 'ARMY_Anonimo';
+            let text = document.getElementById('chatText').value;
+            let img = document.getElementById('chatImg').value;
+
+            if(!text) { alert('Por favor escribe un mensaje'); return; }
+
+            let history = document.getElementById('chatHistory');
+            let msgBox = document.createElement('div');
+            msgBox.className = 'chat-msg';
+            
+            let html = `<strong>@${user}:</strong> ${text}`;
+            if(img) {
+                html += `<br><img src="${img}" alt="Foto Comentario">`;
             }
+            msgBox.innerHTML = html;
+            
+            history.prepend(msgBox);
+            document.getElementById('chatText').value = '';
+            document.getElementById('chatImg').value = '';
         }
 
-        // Noticia Simulada / Actualizada
-        document.getElementById('news-text').innerText = "✨ ¡Novedad BTS 2026! Nuevos proyectos individuales y sorpresas preparadas para la comunidad ARMY global.";
-
-        // Sistema de Pago Móvil emergente
-        function mostrarPago(producto, precio) {
-            let datos = localStorage.getItem('pagoMovil') || "Pago Móvil: 0412-0000000 | CI: 12345678 | Banco: Banesco";
-            alert(`🛒 Producto: ${producto}\n💰 Monto: ${precio}\n\nDatos para Transferir:\n${datos}\n\nEnvía el comprobante a @creativeymvs para recibir tu enlace de Google Drive.`);
+        // 3. Sistema de Pago y Desbloqueo Google Drive
+        let productoActual = "";
+        function solicitarCompra(nombre, precio) {
+            productoActual = nombre;
+            document.getElementById('pagoProductoNombre').innerText = `${nombre} - Precio: ${precio}`;
+            document.getElementById('modalPago').style.display = 'flex';
         }
 
-        // Muro de comentarios
-        function enviarMensaje() {
-            let txt = document.getElementById('chatText').value;
-            if(!txt) return;
-            let box = document.getElementById('chat-messages');
-            box.innerHTML += `<p style="font-size:0.85rem; color:#ccc; margin-top:5px;"><b>ARMY_Fan:</b> ${txt}</p>`;
-            document.getElementById('chatText').value = "";
-        }
-
-        // Trivia con resultado compartir
-        function responderTrivia(esCorrecto) {
-            if(esCorrecto) {
-                alert("¡Correcto! 🎉 Acertaste.\nResultado: 100% ARMY\n\n© 2026 @creativeymvs | BTS Army");
-            } else {
-                alert("Sigue intentando 💜\n\n© 2026 @creativeymvs | BTS Army");
+        function procesarEnvioPago() {
+            let comp = document.getElementById('comprobanteUrl').value;
+            if(!comp) {
+                alert('Por favor adjunta la URL de la foto del comprobante de pago.');
+                return;
             }
+            alert('¡Comprobante enviado con éxito! Verificando pago...');
+            let driveUrl = document.getElementById('driveDemoUrl').value;
+            window.open(driveUrl, '_blank');
+            cerrarModal('modalPago');
         }
 
-        // LOGIN ULTRA SECRETO PARA EL CREADOR
-        function loginCreador() {
-            let user = prompt("Usuario Creador:");
-            if (user === null) return;
-            let pass = prompt("Clave Secreta:");
-            if (pass === null) return;
-
-            if (user.trim() === "Creativeymvs" && pass.trim() === "123123$+") {
-                document.getElementById('creator-modal').style.display = 'flex';
-            } else {
-                alert("Acceso denegado.");
-            }
+        function cerrarModal(id) {
+            document.getElementById(id).style.display = 'none';
         }
 
-        function guardarPanel() {
-            let val = document.getElementById('pagoMovilDatos').value;
-            localStorage.setItem('pagoMovil', val);
-            alert("¡Datos de Pago Móvil actualizados!");
-            cerrarModal();
-        }
-
-        function cerrarModal() {
-            document.getElementById('creator-modal').style.display = 'none';
-        }
-    </script>
-</body>
-  </html>
+        // 4. Autenticación Creador
+        function accesoCreador() {
+            
